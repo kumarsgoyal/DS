@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class DirectedGraphAndItsRepresentations {
+class UndirectedGraphBFS {
 
 	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
 		for(int i = 0; i < size; i++) {
@@ -10,10 +10,34 @@ class DirectedGraphAndItsRepresentations {
 	}
 	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
 		graph.get(u).add(v);
+		graph.get(v).add(u);
 	}
 
-	static void showGraph(ArrayList<ArrayList<Integer>> graph) {
-		System.out.println(graph);
+	static void BFS(ArrayList<ArrayList<Integer>> graph) {
+		int arr[] = new int[graph.size()];
+		Queue<Integer> que = new LinkedList<Integer>();
+
+
+		for(int i = 0; i < graph.size(); i++) {
+			if(arr[i] == 0  && graph.get(i).size() != 0) {
+				arr[i] = 1;
+				que.add(i);
+				// count++ for no. of component
+			}
+
+			while(que.size() != 0) {
+				int temp = que.poll();
+				System.out.print(temp + " ");
+
+				for(int j = 0; j < graph.get(temp).size(); j++) {
+					if(arr[graph.get(temp).get(j)] == 0) {
+						arr[graph.get(temp).get(j)] = 1;
+						que.add(graph.get(temp).get(j));
+					}
+				}
+			}
+		}
+
 	}
 
 	public static void main(String args[]) {
@@ -29,7 +53,7 @@ class DirectedGraphAndItsRepresentations {
 		
 		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
-		
+	
 		for(int i = 0; i < edge; i++) {
 			System.out.println("Enter the vextex no to vertex no");
 			Integer u = sc.nextInt();
@@ -37,9 +61,7 @@ class DirectedGraphAndItsRepresentations {
 			addedge(graph, u, v);
 		}
 
-
-		showGraph(graph);
-		
+		BFS(graph);
 
 	}
 }
@@ -48,8 +70,12 @@ class DirectedGraphAndItsRepresentations {
 /*
  // test case
 
- 5 // no. of vertex
- 7 // no. of edge
+
+// no. of vertex
+// no. of edge
+
+ 5 
+ 7
 
  0
  1

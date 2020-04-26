@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class DirectedGraphAndItsRepresentations {
+class GraphAndItsRepresentations {
 
 	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
 		for(int i = 0; i < size; i++) {
@@ -13,7 +13,13 @@ class DirectedGraphAndItsRepresentations {
 	}
 
 	static void showGraph(ArrayList<ArrayList<Integer>> graph) {
-		System.out.println(graph);
+		for(int i = 0; i < graph.size(); i++) {
+			System.out.println(i + "-");
+			for(int j = 0; j < graph.get(i).size(); j++) {
+				System.out.print(graph.get(i).get(j) + " ");
+			}
+			System.out.println("\n");
+		}
 	}
 
 	public static void main(String args[]) {
@@ -27,9 +33,9 @@ class DirectedGraphAndItsRepresentations {
 
 		arrayList(graph, vsize);
 		
-		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
 		
+		System.out.println("Enter the number of edge");
 		for(int i = 0; i < edge; i++) {
 			System.out.println("Enter the vextex no to vertex no");
 			Integer u = sc.nextInt();
@@ -43,34 +49,3 @@ class DirectedGraphAndItsRepresentations {
 
 	}
 }
-
-
-/*
- // test case
-
- 5 // no. of vertex
- 7 // no. of edge
-
- 0
- 1
-
- 0
- 4
-
- 1
- 2
-
- 1
- 3
-
- 1
- 4
-
- 2
- 3
-
- 3
- 4
-
-
-*/

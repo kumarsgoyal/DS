@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class DirectedGraphAndItsRepresentations {
+class UndirectedGraphAndItsRepresentations {
 
 	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
 		for(int i = 0; i < size; i++) {
@@ -10,6 +10,7 @@ class DirectedGraphAndItsRepresentations {
 	}
 	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
 		graph.get(u).add(v);
+		graph.get(v).add(u);
 	}
 
 	static void showGraph(ArrayList<ArrayList<Integer>> graph) {
@@ -29,7 +30,7 @@ class DirectedGraphAndItsRepresentations {
 		
 		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
-		
+	
 		for(int i = 0; i < edge; i++) {
 			System.out.println("Enter the vextex no to vertex no");
 			Integer u = sc.nextInt();

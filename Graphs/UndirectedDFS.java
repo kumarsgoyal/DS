@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class DirectedGraphAndItsRepresentations {
+class UndirectedGraphDFS {
 
 	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
 		for(int i = 0; i < size; i++) {
@@ -10,10 +10,17 @@ class DirectedGraphAndItsRepresentations {
 	}
 	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
 		graph.get(u).add(v);
+		graph.get(v).add(u);
 	}
 
-	static void showGraph(ArrayList<ArrayList<Integer>> graph) {
-		System.out.println(graph);
+	static void DFS(ArrayList<ArrayList<Integer>> graph, int arr[], int index) {
+		arr[index] = 1;
+		System.out.print(index + " ");
+		for(int i = 0; i < graph.get(index).size(); i++) {
+			if(arr[graph.get(index).get(i)] == 0) {
+				DFS(graph, arr, graph.get(index).get(i));
+			}
+		}
 	}
 
 	public static void main(String args[]) {
@@ -23,13 +30,14 @@ class DirectedGraphAndItsRepresentations {
 		System.out.println("Enter the size of vertex");
 		int vsize = sc.nextInt();
 
+		// LinkedList<Integer> adj[]; or we can use array or linkedlist
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>> ();
 
 		arrayList(graph, vsize);
 		
 		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
-		
+	
 		for(int i = 0; i < edge; i++) {
 			System.out.println("Enter the vextex no to vertex no");
 			Integer u = sc.nextInt();
@@ -37,9 +45,13 @@ class DirectedGraphAndItsRepresentations {
 			addedge(graph, u, v);
 		}
 
+		int arr[] = new int[graph.size()];
 
-		showGraph(graph);
-		
+		for(int i = 1; i < graph.size(); i++) {
+			if(arr[i] == 0) {
+				DFS(graph, arr, i);		
+			}
+		}
 
 	}
 }
@@ -48,8 +60,12 @@ class DirectedGraphAndItsRepresentations {
 /*
  // test case
 
- 5 // no. of vertex
- 7 // no. of edge
+
+// no. of vertex
+// no. of edge
+
+ 5 
+ 7
 
  0
  1
