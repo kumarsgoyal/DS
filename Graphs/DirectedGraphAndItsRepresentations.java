@@ -48,29 +48,18 @@ class DirectedGraphAndItsRepresentations {
 /*
  // test case
 
- 5 // no. of vertex
- 7 // no. of edge
+ 11 // no. of vertex
+ 13 // no. of edge
 
- 0
- 1
-
- 0
- 4
-
- 1
- 2
-
- 1
- 3
-
- 1
- 4
-
- 2
- 3
-
- 3
- 4
-
+ 1. 2
+ 2. 3,4
+ 3. 1
+ 4. 5
+ 5. 6
+ 6. 4
+ 7. 6, 8
+ 8. 9
+ 9. 10
+ 10. 11, 7
 
 */

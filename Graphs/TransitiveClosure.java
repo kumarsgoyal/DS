@@ -1,21 +1,40 @@
 import java.util.*;
 
 
-class UndirectedGraphAndItsRepresentations {
+class TransitiveClosure {
 
 	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
 		for(int i = 0; i < size; i++) {
-			graph.add(new ArrayList<Integer>());
+			graph.add(new ArrayList<Integer> ());
 		}
 	}
-	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
-		graph.get(u).add(v);
-		graph.get(v).add(u);
+
+	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size, int size1) {
+		for(int i = 0; i < size; i++) {
+			graph.add(new ArrayList<Integer> (size1));
+		}
 	}
 
-	static void showGraph(ArrayList<ArrayList<Integer>> graph) {
+	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
+		graph.get(u).add(v);
+	}
+
+	static void ShowGraph(ArrayList<ArrayList<Integer>> graph) {
 		System.out.println(graph);
 	}
+
+	static void FindTransitive(ArrayList<ArrayList<Integer>> graph) {
+		ArrayList<ArrayList<Integer>> trans = new ArrayList<ArrayList<Integer>> ();
+		arrayList(trans, graph.size());
+
+		for(int i = 0; i < graph.size(); i++) {
+			for(int j = 0; j < graph.size(); j++) {
+				trans.get(i).add(graph.get(i).get(j));
+			}
+		}
+
+
+	}	
 
 	public static void main(String args[]) {
 
@@ -30,7 +49,7 @@ class UndirectedGraphAndItsRepresentations {
 		
 		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
-	
+		
 		for(int i = 0; i < edge; i++) {
 			System.out.println("Enter the vextex no to vertex no");
 			Integer u = sc.nextInt();
@@ -39,9 +58,7 @@ class UndirectedGraphAndItsRepresentations {
 		}
 
 
-		showGraph(graph);
-		
-
+		FindTransitive(graph);
 	}
 }
 
@@ -64,4 +81,3 @@ class UndirectedGraphAndItsRepresentations {
  10. 11, 7
 
 */
-
