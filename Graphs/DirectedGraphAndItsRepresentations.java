@@ -61,5 +61,4 @@ class DirectedGraphAndItsRepresentations {
  8. 9
  9. 10
  10. 11, 7
-
 */
