@@ -3,35 +3,40 @@ import java.util.*;
 
 class TransitiveClosure {
 
-	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size) {
-		for(int i = 0; i < size; i++) {
-			graph.add(new ArrayList<Integer> ());
+	static void addedge(boolean graph[][], int u, int v) {
+		graph[u][v] = true;
+	}
+
+	static void ShowGraph(boolean graph[][], int size) {
+		for(int i = 1 ; i < size; i++) {
+			for(int j = 1; j < size; j++) {
+				if(graph[i][j] == true)
+					System.out.print(1 + " ");
+				else 
+					System.out.print(0 + " ");
+			}
+			System.out.print("\n");
 		}
 	}
 
-	static void arrayList(ArrayList<ArrayList<Integer>> graph, int size, int size1) {
+	static void FindTransitive(boolean  graph[][], int size) {
+		boolean trans[][] = new boolean[size][size];
+
 		for(int i = 0; i < size; i++) {
-			graph.add(new ArrayList<Integer> (size1));
-		}
-	}
-
-	static void addedge(ArrayList<ArrayList<Integer>> graph, int u, int v) {
-		graph.get(u).add(v);
-	}
-
-	static void ShowGraph(ArrayList<ArrayList<Integer>> graph) {
-		System.out.println(graph);
-	}
-
-	static void FindTransitive(ArrayList<ArrayList<Integer>> graph) {
-		ArrayList<ArrayList<Integer>> trans = new ArrayList<ArrayList<Integer>> ();
-		arrayList(trans, graph.size());
-
-		for(int i = 0; i < graph.size(); i++) {
-			for(int j = 0; j < graph.size(); j++) {
-				trans.get(i).add(graph.get(i).get(j));
+			for(int j = 0; j < size; j++) {
+				trans[i][j] = graph[i][j];
 			}
 		}
+
+		for(int k = 0; k < size; k++) {
+			for(int i = 0; i < size; i++) {
+				for(int j = 0; j < size; j++) {
+					trans[i][j] = trans[i][j] || (trans[i][k] && trans[k][j]);
+				}
+			}
+		}
+
+		ShowGraph(trans, size);
 
 
 	}	
@@ -42,10 +47,9 @@ class TransitiveClosure {
 
 		System.out.println("Enter the size of vertex");
 		int vsize = sc.nextInt();
+		vsize += 1;
 
-		ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>> ();
-
-		arrayList(graph, vsize);
+		boolean graph[][] = new boolean[vsize][vsize];
 		
 		System.out.println("Enter the number of edge");
 		int edge = sc.nextInt();
@@ -58,7 +62,7 @@ class TransitiveClosure {
 		}
 
 
-		FindTransitive(graph);
+		FindTransitive(graph, vsize);
 	}
 }
 
