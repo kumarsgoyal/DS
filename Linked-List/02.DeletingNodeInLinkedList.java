@@ -12,6 +12,7 @@ class DeletingNodeInLinkedList {
 		head = null;
 	}
 
+        // List node structure
 	class Node {
 		int data;
 		Node next;
